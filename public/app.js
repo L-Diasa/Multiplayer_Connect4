@@ -99,9 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function checkDirection(direction, row, col) {
-    console.log(direction)
-    console.log("direction.i: " + direction.i)
-    console.log("row: " + row)
     let total = 0;
     let i = Number(row) + Number(direction.i);
     let j = Number(col) + Number(direction.j);
@@ -125,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function checkWin(directionA, directionB, row, col) {
-    console.log("been here")
     const total = 1 +
       checkDirection(directionA, row, col) +
       checkDirection(directionB, row, col);
@@ -197,13 +193,17 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   $('#restart').click(function() {
-    restartGame();
+    if(myColor != 'none') {
+      restartGame();
+    }
     socket.emit('restart')
   })
 
   socket.on('restart', () => {
     restartGame();
-    gameOver = false;
+    if(myColor != 'none') {
+      gameOver = false;
+    }
   })
 
   function restartGame() {
