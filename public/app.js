@@ -172,8 +172,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   socket.on('player-number', num => {
     if(num === -1) {
-        infoDisplay.innerHTML = `Sorry, 
-        the server is full`
+      infoDisplay.innerHTML = `Sorry, 
+        the server is full`;
+      myColor = 'none';
+      gameover = true;
+      playerNum = 3;
     }
     else {
         playerNum = parseInt(num);
@@ -227,7 +230,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   socket.on('gameOver', () => {
-    gameOver = true;
+    if(myColor != 'none') {
+      gameOver = true;
+    }
     alert(`Game Over! Player ${currPlayer} has won!`);
   })
 
