@@ -7,11 +7,6 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
-
-// app.use(express.static('public'));
-// const http = require('http').Server(app);
-
-
 app.use(express.static(path.join(__dirname, "public")))
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`))
